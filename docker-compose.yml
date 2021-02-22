@@ -2,8 +2,8 @@ version: "3"
 
 networks:
   lb: 
-    external:
-      name: proxy # run : docker network create dev
+    driver:
+      bridge
 
 services:
 # Web Server Container
