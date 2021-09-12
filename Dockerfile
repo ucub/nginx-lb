@@ -88,13 +88,8 @@ RUN set -x \
     && chown root /usr/local/bin/certbot \
     && chmod 0755 /usr/local/bin/certbot \
     \
-# installing certbot with non interactive tty
-    && /usr/local/bin/certbot --non-interactive --no-permissions-check --no-self-upgrade --install-only \
-    \
-    && apt-get install --no-install-recommends --no-install-suggests -y \
-                        $nginxPackages \
-                        gettext-base \
-    && apt-get remove --purge --auto-remove -y ca-certificates && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/nginx.list \
+# Install Cerbot
+    &&  apt install certbot python-certbot-nginx -y\
     \
 # if we have leftovers from building, let's purge them (including extra, unnecessary build deps)
     && if [ -n "$tempDir" ]; then \
